@@ -6,3 +6,10 @@
     </li>
   </ul>
 </div>
+<div>
+  <div>
+  <span>Additional Stock to track: </span>
+    <input type="text" [value]="stockInput" [(ngModel)]="stockInput"/>
+    <input type="button" value="Submit" (click)="addDataToFetch()">
+  </div>
+</div>

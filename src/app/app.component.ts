@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IMessage, Client} from "@stomp/stompjs";
+import {HttpClient} from "@angular/common/http";
 
 
 interface StocksUpdate {
@@ -14,7 +15,11 @@ interface StocksUpdate {
 })
 export class AppComponent implements OnInit {
   title = 'WebsocketTest';
+  stockInput = "";
   stocks = new Map<String, number>();
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   ngOnInit(): void {
     void this.fetchUpdateData();
@@ -51,5 +56,11 @@ export class AppComponent implements OnInit {
     client.onConnect = on_connect(this.stocks);
     client.onWebSocketError = on_error;
     client.activate();
+  }
+
+  addDataToFetch() {
+    this.httpClient.post("http://localhost:8080/api/stocks/" + this.stockInput, {}).subscribe();
+    this.stocks.set(this.stockInput, 0);
+    this.stockInput = "";
   }
 }

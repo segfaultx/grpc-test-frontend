@@ -63,7 +63,8 @@
               "browserTarget": "WebsocketTest:build:production"
             },
             "development": {
-              "browserTarget": "WebsocketTest:build:development"
+              "browserTarget": "WebsocketTest:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
